@@ -41,6 +41,7 @@ fetch(api)
     .then(response => response.json())
     .then(data => {
         apiManipular = data
+
         // testeo de cantidad de objetos dentro de la array
         console.log(apiManipular.length)
         // testeo de traer solamente los nombres
