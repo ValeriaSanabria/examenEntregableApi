@@ -10,7 +10,7 @@ function addUser(name) {
         let tdName = document.createElement('td');
         let tdSurname = document.createElement('td');
         
-        // le inserto los valores al tr y td
+        // le inserto los valores al input
         tdName.innerText = inputName.value;
         tdSurname.innerText = inputSurname.value;
 

@@ -8,15 +8,43 @@ let inputBday = document.getElementById('bday');
 let inputMail = document.getElementById('mail');
 let inputId = document.getElementById('id');
 
+let lista = document.querySelector('#tab');
+tab.addEventListener('click', eventoVer)
+
+let btn = document.querySelector('.btn');
+btn.addEventListener('click', agregar)
+
+function eventoVer() {
+    console.log(apiManipular[0].name)
+}
+
+function agregar() {
+        // creo los elementos dentro del tbody
+        let tr = document.createElement('tr');
+            let tdName = document.createElement('td');
+            let tdSurname = document.createElement('td');
+            
+            // le inserto los valores al tr y td
+            tdName.innerText = inputName.value;
+            tdCity.innerText = inputCity.value;
+    
+            // agarro el tbody y voy insertando en el html 
+            let tbody = document.getElementById('tab');
+            tbody.appendChild(tr);
+            tr.appendChild(tdName);
+            tr.appendChild(tdSurname);
+    }
+
+
+
 fetch(api)
     .then(response => response.json())
     .then(data => {
         apiManipular = data
-        
         // testeo de cantidad de objetos dentro de la array
         console.log(apiManipular.length)
         // testeo de traer solamente los nombres
-        inputName.value = apiManipular.forEach(element => console.log(element.name));
+        apiManipular.forEach(element => console.log(element.name));
         // testeo de traer solamente la city
         apiManipular.forEach(element => console.log(element.city));
         // testeo de traer los birthday 
@@ -74,3 +102,4 @@ fetch(api)
 // console.log(crearLista());
     })
     .catch(error => console.error(error))
+
