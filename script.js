@@ -23,10 +23,12 @@ fetch(api)
 
         for (let index = 0; index < data.length; index++) {
             const element = data[index];
+
             // creo los elementos dentro del tbody
+            let tr = document.createElement('tr');
+            
             let tdId = document.createElement('th');
 
-            let tr = document.createElement('tr');
             let tdName = document.createElement('td');
             tdName.classList.add("edit");
 
