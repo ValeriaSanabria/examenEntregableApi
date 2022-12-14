@@ -5,3 +5,7 @@ h1{
 .row{
     justify-self: center;
 }
+input {
+    width: auto;
+    text-align: center;
+}

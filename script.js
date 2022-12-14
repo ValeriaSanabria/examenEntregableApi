@@ -24,12 +24,21 @@ fetch(api)
         for (let index = 0; index < data.length; index++) {
             const element = data[index];
             // creo los elementos dentro del tbody
+            let tdId = document.createElement('th');
+
             let tr = document.createElement('tr');
             let tdName = document.createElement('td');
+            tdName.classList.add("edit");
+
             let tdCity = document.createElement('td');
+            tdCity.classList.add("edit");
+
             let tdBday = document.createElement('td');
+            tdBday.classList.add("edit");
+
             let tdMail = document.createElement('td');
-            let tdId = document.createElement('td');
+            tdMail.classList.add("edit");
+
             let buttonEdit = document.createElement("button");
             let buttonDelete = document.createElement("button");
 
@@ -57,13 +66,13 @@ fetch(api)
             tr.appendChild(buttonDelete);
 
             buttonEdit.addEventListener("click", () => {
-                let editables = buttonEdit.parentElement;
-                editables = editables.childNodes
+                let edit = buttonEdit.parentElement;
+                edit = edit.childNodes
                 if (buttonEdit.innerText == "Editar") {
-                    editar(editables);
+                    editar(edit);
                     buttonEdit.innerText = "Aceptar";
                 } else {
-                    terminarCambio(editables)
+                    guardarCambio(edit)
                     buttonEdit.innerText = "Editar";
                 }
             });
@@ -71,8 +80,29 @@ fetch(api)
             buttonDelete.addEventListener("click", () => {
                 tr.remove();
             })
-
         }
+
+        function editar(filas) {
+            filas.forEach(elemento => {
+                if (elemento.className === "edit") {
+                    let celdasEditables = document.createElement("input");
+                    celdasEditables.value = elemento.innerText;
+                    elemento.replaceWith(celdasEditables);
+                    celdasEditables.classList.add("edit")
+                }
+            })
+        }
+
+        function guardarCambio(filas) {
+            filas.forEach(elemento => {
+                if (elemento.className === "edit") {
+                    let celdaFinal = document.createElement("td");
+                    celdaFinal.innerText = elemento.value;
+                    elemento.replaceWith(celdaFinal);
+                    celdaFinal.classList.add("edit")
+                };
+            });
+        };
 
     })
     .catch(error => console.error(error))
